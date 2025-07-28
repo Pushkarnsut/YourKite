@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+
+# Cache
+.cache/
+.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Deployment
+.vercel/
+.netlify/
