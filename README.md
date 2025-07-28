@@ -1,6 +1,6 @@
 # 🪁 YourKite - Full Stack Trading Platform
 
-A comprehensive stock trading platform inspired by Zerodha, built with modern web technologies featuring real-time stock prices, portfolio management, and secure authentication.
+A comprehensive stock trading platform inspired by Zerodha's Kite application, built with modern web technologies featuring real-time stock prices, portfolio management, and secure authentication.
 
 ## ✨ Features
 
