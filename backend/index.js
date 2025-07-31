@@ -69,28 +69,28 @@ const activeSessions = new Map();
 //   }
 //   next();
 // };
-// app.use((req, res, next) => {
-//     if (req.isAuthenticated()) {
-//         const userId = req.user._id.toString();
-//         const sessionId = req.session.sessionId;
+app.use((req, res, next) => {
+    if (req.isAuthenticated()) {
+        const userId = req.user._id.toString();
+        const sessionId = req.session.sessionId;
         
-//         const currentSessionId = activeSessions.get(userId);
+        const currentSessionId = activeSessions.get(userId);
         
-//         if (!currentSessionId || currentSessionId !== sessionId) {
-//             req.logout(function(err) {
-//                 if (err) {
-//                     console.error("Error logging out:", err);
-//                 }
-//                 return res.status(401).json({
-//                     isAuthenticated: false,
-//                     message: "You have been logged in from another device or browser. Please login again."
-//                 });
-//             });
-//             return;
-//         }
-//     }
-//     next();
-// });
+        if (!currentSessionId || currentSessionId !== sessionId) {
+            req.logout(function(err) {
+                if (err) {
+                    console.error("Error logging out:", err);
+                }
+                return res.status(401).json({
+                    isAuthenticated: false,
+                    message: "You have been logged in from another device or browser. Please login again."
+                });
+            });
+            return;
+        }
+    }
+    next();
+});
 
 async function createInitialFundsForUser(userId) {
     try {
@@ -163,27 +163,42 @@ app.post("/signup",async (req,res)=>{
     }
 })
 
-app.post("/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
-        req.login(user, (err) => {
-            if (err) {
-                return res.status(500).json({ message: "Login error" });
-            }
-            const sessionId = Date.now().toString();
-            activeSessions.set(user._id.toString(), sessionId);
-            req.session.sessionId = sessionId;
+// app.post("/login", (req, res, next) => {
+//     passport.authenticate("local", (err, user, info) => {
+//         req.login(user, (err) => {
+//             if (err) {
+//                 return res.status(500).json({ message: "Login error" });
+//             }
+//             const sessionId = Date.now().toString();
+//             activeSessions.set(user._id.toString(), sessionId);
+//             req.session.sessionId = sessionId;
 
-            return res.status(200).json({
-                message: "Login successful",
-                user: {
-                    id: user._id,
-                    username: user.username,
-                    name: user.name,
-                    email: user.email
-                }
-            });
-        });
-    })(req, res, next);
+//             return res.status(200).json({
+//                 message: "Login successful",
+//                 user: {
+//                     id: user._id,
+//                     username: user.username,
+//                     name: user.name,
+//                     email: user.email
+//                 }
+//             });
+//         });
+//     })(req, res, next);
+// });
+app.post("/login",passport.authenticate("local",{failureRedirect:"/login"}),(req,res)=>{
+    const sessionId = Date.now().toString();
+    activeSessions.set(req.user._id.toString(),sessionId);
+    req.session.sessionId = sessionId;
+
+    res.status(200).json({
+        message:"Login successful",
+        user:{
+            id:req.user._id,
+            username:req.user.username,
+            name:req.user.name,
+            email:req.user.email
+        }
+    });
 });
 
 app.post("/logout", (req, res) => {
