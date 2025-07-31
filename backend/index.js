@@ -20,6 +20,7 @@ const port=process.env.PORT || 3000;
 const url=process.env.MONGO_URL;
 
 const app=express();
+app.set("trust proxy", 1);
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
         ? ["https://your-kite.vercel.app",
