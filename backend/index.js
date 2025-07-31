@@ -64,28 +64,28 @@ const activeSessions = new Map();
 //   }
 //   next();
 // };
-app.use((req, res, next) => {
-    if (req.isAuthenticated()) {
-        const userId = req.user._id.toString();
-        const sessionId = req.session.sessionId;
+// app.use((req, res, next) => {
+//     if (req.isAuthenticated()) {
+//         const userId = req.user._id.toString();
+//         const sessionId = req.session.sessionId;
         
-        const currentSessionId = activeSessions.get(userId);
+//         const currentSessionId = activeSessions.get(userId);
         
-        if (!currentSessionId || currentSessionId !== sessionId) {
-            req.logout(function(err) {
-                if (err) {
-                    console.error("Error logging out:", err);
-                }
-                return res.status(401).json({
-                    isAuthenticated: false,
-                    message: "You have been logged in from another device or browser. Please login again."
-                });
-            });
-            return;
-        }
-    }
-    next();
-});
+//         if (!currentSessionId || currentSessionId !== sessionId) {
+//             req.logout(function(err) {
+//                 if (err) {
+//                     console.error("Error logging out:", err);
+//                 }
+//                 return res.status(401).json({
+//                     isAuthenticated: false,
+//                     message: "You have been logged in from another device or browser. Please login again."
+//                 });
+//             });
+//             return;
+//         }
+//     }
+//     next();
+// });
 
 async function createInitialFundsForUser(userId) {
     try {
