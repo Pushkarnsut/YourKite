@@ -226,7 +226,8 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/check-auth", (req, res) => {
-    console.log("=== AUTH DEBUG ===");
+   console.log("=== AUTH DEBUG ===");
+    console.log("Cookies received:", req.headers.cookie); 
     console.log("Session cookie settings:", req.session.cookie);
     console.log("Is authenticated:", req.isAuthenticated());
     console.log("Session ID:", req.session.id);
