@@ -29,6 +29,16 @@ app.use(cors({
         : ["http://localhost:5173", "http://localhost:5174"],
     credentials: true
 }));
+
+console.log("=== ENVIRONMENT DEBUG ===");
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("Session cookie sameSite:", process.env.NODE_ENV === 'production' ? 'none' : 'lax');
+console.log("Session cookie secure:", process.env.NODE_ENV === 'production');
+console.log("CORS origins:", process.env.NODE_ENV === 'production' 
+    ? ["https://your-kite.vercel.app", "https://yourkite-dashboard.vercel.app"]
+    : ["localhost"]);
+console.log("========================");
+
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -199,6 +209,13 @@ app.post("/login", (req, res, next) => {
             const sessionId = Date.now().toString();
             activeSessions.set(user._id.toString(), sessionId);
             req.session.sessionId = sessionId;
+
+            console.log("=== LOGIN SUCCESS DEBUG ===");
+            console.log("Session ID after login:", req.session.id);
+            console.log("Session cookie settings:", req.session.cookie);
+            console.log("User logged in:", user.username);
+            console.log("Response headers will include Set-Cookie for domain:", req.get('host'));
+            console.log("============================");
 
             return res.status(200).json({
                 message: "Login successful",
