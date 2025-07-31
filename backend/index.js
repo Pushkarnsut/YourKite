@@ -22,7 +22,10 @@ const url=process.env.MONGO_URL;
 const app=express();
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ["https://your-kite.vercel.app","https://yourkite-dashboard.vercel.app"]
+        ? ["https://your-kite.vercel.app",
+            "https://your-kite.vercel.app/",
+            "https://yourkite-dashboard.vercel.app",
+            "https://yourkite-dashboard.vercel.app/"]
         : ["http://localhost:5173", "http://localhost:5174"],
     credentials: true
 }));
