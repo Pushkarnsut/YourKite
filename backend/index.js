@@ -53,8 +53,31 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new localStrategy(UsersModel.authenticate()));
-passport.serializeUser(UsersModel.serializeUser());
-passport.deserializeUser(UsersModel.deserializeUser());
+// passport.serializeUser(UsersModel.serializeUser());
+// passport.deserializeUser(UsersModel.deserializeUser());
+passport.serializeUser((user, done) => {
+    console.log("=== SERIALIZING USER ===");
+    console.log("User ID:", user._id);
+    console.log("User object:", { id: user._id, username: user.username });
+    done(null, user._id);
+});
+passport.deserializeUser(async (id, done) => {
+    console.log("=== DESERIALIZING USER ===");
+    console.log("Looking for user ID:", id);
+    try {
+        const user = await UsersModel.findById(id);
+        console.log("Found user:", user ? { id: user._id, username: user.username } : "null");
+        if (user) {
+            done(null, user);
+        } else {
+            console.log("User not found in database");
+            done(null, false);
+        }
+    } catch (error) {
+        console.error("Deserialization error:", error);
+        done(error, null);
+    }
+});
 
 const activeSessions = new Map();
 
@@ -203,14 +226,14 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/check-auth", (req, res) => {
-    console.log("=== AUTH DEBUG ===");
-    console.log("Session cookie settings:", req.session.cookie);
-    console.log("Is authenticated:", req.isAuthenticated());
-    console.log("Session ID:", req.session.id);
-    console.log("Session data:", req.session);
-    console.log("Passport user:", req.user);
-    console.log("Session passport:", req.session.passport);
-    console.log("==================");
+    // console.log("=== AUTH DEBUG ===");
+    // console.log("Session cookie settings:", req.session.cookie);
+    // console.log("Is authenticated:", req.isAuthenticated());
+    // console.log("Session ID:", req.session.id);
+    // console.log("Session data:", req.session);
+    // console.log("Passport user:", req.user);
+    // console.log("Session passport:", req.session.passport);
+    // console.log("==================");
     if (req.isAuthenticated()) {
         const userId = req.user._id.toString();
         const sessionId = req.session.sessionId;
