@@ -203,9 +203,14 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/check-auth", (req, res) => {
+    console.log("=== AUTH DEBUG ===");
     console.log("Session cookie settings:", req.session.cookie);
     console.log("Is authenticated:", req.isAuthenticated());
     console.log("Session ID:", req.session.id);
+    console.log("Session data:", req.session);
+    console.log("Passport user:", req.user);
+    console.log("Session passport:", req.session.passport);
+    console.log("==================");
     if (req.isAuthenticated()) {
         const userId = req.user._id.toString();
         const sessionId = req.session.sessionId;
