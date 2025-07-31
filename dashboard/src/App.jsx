@@ -47,7 +47,7 @@ export default function App(){
     );
   }
   if (!isAuthenticated) {
-    window.location.href = LOGIN_URL;
+   // window.location.href = LOGIN_URL;
     return null;
   }
 
