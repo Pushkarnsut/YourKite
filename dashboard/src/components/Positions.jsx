@@ -1,10 +1,11 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
+import API from "../Api";
 // import { positions } from "../dataset/data";
 export default function Positions() {
   const[allPositions,setAllPositions]=useState([]);
   useEffect(()=>{
-    axios.get("http://localhost:3000/allPositions").then((res)=>{
+    API.get("/allPositions").then((res)=>{
       setAllPositions(res.data);
     })
   },[]);

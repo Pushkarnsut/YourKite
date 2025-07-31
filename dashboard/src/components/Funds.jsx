@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import {useState,useEffect} from "react";
 import AddFundsWindow from "./AddFundsWindow";
+import WithdrawFundsWindow from "./WithdrawFundsWindow";
 import axios from "axios";
+import API from "../Api";
 
 export default function Funds() {
   const[allFunds,setAllFunds]=useState([]);
     useEffect(()=>{
-      axios.get("http://localhost:3000/Funds").then((res)=>{
+      API.get("/Funds").then((res)=>{
         setAllFunds(res.data);
       })
     },[]);
@@ -18,13 +20,24 @@ export default function Funds() {
   const closeAddFundsWindow = () => {
     setAddFundsOpen(false);
   };
+
+  const [isWithdrawFundsOpen, setWithdrawFundsOpen] = useState(false);
+  const openWithdrawFundsWindow = () => {
+    setWithdrawFundsOpen(true);
+  };
+  const closeWithdrawFundsWindow = () => {
+    setWithdrawFundsOpen(false);
+  };
+
+
   return (
     <>
       <div className="funds">
         <p>Instant, zero-cost fund transfers with UPI </p>
         <button className="btn btn-green" onClick={openAddFundsWindow}>Add funds</button>
-        <button className="btn btn-blue">Withdraw</button>
+        <button className="btn btn-blue" onClick={openWithdrawFundsWindow}>Withdraw</button>
         {isAddFundsOpen && <AddFundsWindow close={closeAddFundsWindow} />}
+        {isWithdrawFundsOpen && <WithdrawFundsWindow close={closeWithdrawFundsWindow} />}
       </div>
 
       <div className="row-funds">

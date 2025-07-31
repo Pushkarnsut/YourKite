@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 // import "./BuyWindow.css";
 import axios from "axios";
 import API from "../Api";
 
-export default function AddFundsWindow({ close }) {
-  const [newamount, setNewAmount] = useState(100);
+export default function WithdrawFundsWindow({ close }) {
+  const [newamount, setNewAmount] = useState(1);
+  const [allFunds, setAllFunds] = useState([]);
+
+  useEffect(()=>{
+        API.get("/Funds").then((res)=>{
+          setAllFunds(res.data);
+         })
+  },[]);
   const handleAddClick = () => {
-      API.post("/addfunds", {
+      API.post("/withdrawfunds", {
         amount: newamount
       });
       close();
       window.location.reload();
     };
-  
+  const canadd= newamount > 0 && newamount <= allFunds.available;
 
 
   return (
@@ -35,8 +42,8 @@ export default function AddFundsWindow({ close }) {
 
       <div className="buttons">
         <div>
-          <button className="btn btn-blue" onClick={handleAddClick} disabled={newamount<=0} >
-            Add Funds
+          <button className="btn btn-blue" onClick={handleAddClick} disabled={!canadd} >
+            Withdraw
           </button>
           <button className="btn btn-grey" onClick={close} >
             Cancel

@@ -4,13 +4,14 @@ import { useState,useEffect,useContext } from "react";
 // import { watchlist } from "../dataset/data";
 import GeneralContext from "./GeneralContext";
 import axios from "axios";
+import API from "../Api";
 
 export default function WatchList() {
   const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
     const fetchData = () => {
-      axios.get("http://localhost:3000/api/watchlist").then(res => setWatchlist(res.data)).catch((err)=>{
+      API.get("/api/watchlist").then(res => setWatchlist(res.data)).catch((err)=>{
         setWatchlist([]);
       });
     };

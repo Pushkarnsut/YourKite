@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API from "../Api";
 import millify from "millify";
 
 import DoughnutChart from "./DoughnutChart";
@@ -7,7 +8,7 @@ import DoughnutChart from "./DoughnutChart";
 export default function Summary({ user }) {
   const[allFunds,setAllFunds]=useState({available: 0, used: 0, payin: 0});
   useEffect(()=>{
-    axios.get("http://localhost:3000/Funds").then((res)=>{
+    API.get("/Funds").then((res)=>{
       setAllFunds(res.data);
      })
   },[]);
@@ -15,7 +16,7 @@ export default function Summary({ user }) {
 
   const[allHoldings,setAllHoldings]=useState([]);
     useEffect(()=>{
-      axios.get("http://localhost:3000/allHoldings").then((res)=>{
+      API.get("/allHoldings").then((res)=>{
         setAllHoldings(res.data);
       })
     },[]);
@@ -23,7 +24,7 @@ export default function Summary({ user }) {
   const [livePrices, setLivePrices] = useState([]);
   useEffect(() => {
     const fetchPrices = () => {
-      axios.get("http://localhost:3000/api/watchlist").then((res) => {
+      API.get("/api/watchlist").then((res) => {
         setLivePrices(res.data);
       }).catch((err)=>{
         setLivePrices([]);

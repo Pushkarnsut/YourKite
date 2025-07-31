@@ -1,12 +1,13 @@
 import { useState } from "react";
 import {Link,useNavigate} from "react-router-dom";
 import axios from "axios";
+import API from "../Api";
 
 export default function Menu({user}) {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [profileOpen, setProfileOpen] = useState(false);
   const navigate = useNavigate();
-  
+  const LANDINGPAGE_URL = import.meta.env.VITE_LANDING_PAGE_URL;
   
   const profileClick = (index) =>{
     setProfileOpen(!profileOpen);
@@ -17,9 +18,9 @@ export default function Menu({user}) {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:3000/logout", {}, { withCredentials: true });
+      await API.post("/logout", {}, { withCredentials: true });
       setProfileOpen(false);
-      window.location.href = "http://localhost:5173";
+      window.location.href = LANDINGPAGE_URL;
     } catch (error) {
       alert("Logout failed. Please try again.");
     }

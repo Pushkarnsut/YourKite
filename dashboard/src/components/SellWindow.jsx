@@ -3,6 +3,7 @@ import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import API from "../Api";
 
 import GeneralContext from "./GeneralContext";
 import { useContext } from "react";
@@ -12,7 +13,7 @@ import { useContext } from "react";
 const SellActionWindow = ({ uid }) => {
   const[allHoldings,setAllHoldings]=useState([]);
   useEffect(()=>{
-    axios.get("http://localhost:3000/allHoldings").then((res)=>{
+    API.get("/allHoldings").then((res)=>{
       setAllHoldings(res.data);
     })
   },[]);
@@ -28,7 +29,7 @@ const SellActionWindow = ({ uid }) => {
 
   useEffect(() => {
     const fetchPrice = () => {
-      axios.get("http://localhost:3000/api/watchlist").then((res) => {
+      API.get("/api/watchlist").then((res) => {
         const stock = res.data.find((s) => s.name === uid);
         if (stock) setStockPrice(stock.price);
       });
@@ -40,7 +41,7 @@ const SellActionWindow = ({ uid }) => {
 
   const canSell=stockQuantity <= hasStockQty && stockQuantity>0;
   const handleSellClick = () => {
-    axios.post("http://localhost:3000/newOrder", {
+    API.post("/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,

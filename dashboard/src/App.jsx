@@ -3,6 +3,8 @@ import { useState,useEffect } from "react";
 import Home from "./components/Home"
 import "./App.css"
 import axios from "axios";
+import API from "./Api";
+
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
   response => response,
@@ -18,11 +20,12 @@ export default function App(){
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/check-auth");
+        const response = await API.get("/check-auth");
         setIsAuthenticated(response.data.isAuthenticated);
         setUser(response.data.user);
       } catch (error) {
@@ -44,7 +47,7 @@ export default function App(){
     );
   }
   if (!isAuthenticated) {
-    window.location.href = "http://localhost:5173/login";
+    window.location.href = LOGIN_URL;
     return null;
   }
 

@@ -3,6 +3,7 @@ import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import API from "../Api";
 
 import GeneralContext from "./GeneralContext";
 import { useContext } from "react";
@@ -18,7 +19,7 @@ const BuyActionWindow = ({ uid }) => {
 
     useEffect(() => {
     const fetchPrice = () => {
-      axios.get("http://localhost:3000/api/watchlist").then((res) => {
+      API.get("/api/watchlist").then((res) => {
         const stock = res.data.find((s) => s.name === uid);
         if (stock) setStockPrice(stock.price);
       });
@@ -29,14 +30,14 @@ const BuyActionWindow = ({ uid }) => {
   }, [uid]);  
 
     useEffect(()=>{
-      axios.get("http://localhost:3000/Funds").then((res)=>{
+      API.get("/Funds").then((res)=>{
         setAllFunds(res.data);
        })
     },[]);
   const canBuy=stockQuantity*stockPrice <= allFunds.available && stockQuantity > 0;
 
   const handleBuyClick = () => {
-    axios.post("http://localhost:3000/newOrder", {
+    API.post("/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,

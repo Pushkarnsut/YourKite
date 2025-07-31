@@ -1,11 +1,12 @@
 import { useState,useEffect } from "react";
 import axios from "axios";
+import API from "../Api";
 // import { holdings } from "../dataset/data";
 
 export default function Holdings() {
   const[allHoldings,setAllHoldings]=useState([]);
   useEffect(()=>{
-    axios.get("http://localhost:3000/allHoldings").then((res)=>{
+    API.get("/allHoldings").then((res)=>{
       setAllHoldings(res.data);
     })
   },[]);
@@ -13,7 +14,7 @@ export default function Holdings() {
   const [livePrices, setLivePrices] = useState([]);
   useEffect(() => {
     const fetchPrices = () => {
-      axios.get("http://localhost:3000/api/watchlist").then((res) => {
+      API.get("/api/watchlist").then((res) => {
         setLivePrices(res.data);
       }).catch((err)=>{
         setLivePrices([]);

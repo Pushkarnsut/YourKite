@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
+import API from "../../Api";
+const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL;
+const LANDING_PAGE_URL = import.meta.env.VITE_LANDING_PAGE_URL;
 
 export default function LoginPage() {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -20,11 +23,10 @@ export default function LoginPage() {
     setIsLoading(true);
   
     try {
-      const response = await axios.post("http://localhost:3000/login",form, { withCredentials: true });
-      
+      const response = await API.post("/login", form);
       setMessage(response.data.message);
       setIsError(false);
-      window.location.href = "http://localhost:5174";
+      window.location.href = DASHBOARD_URL;
 
     } catch (error) {
       setMessage(error.response?.data?.message || "Login failed. Please try again.");

@@ -22,7 +22,7 @@ const url=process.env.MONGO_URL;
 const app=express();
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ["https://your-frontend-domain.com"] 
+        ? ["https://your-kite.vercel.app/","https://yourkite-dashboard.vercel.app/"]
         : ["http://localhost:5173", "http://localhost:5174"],
     credentials: true
 }));
@@ -593,6 +593,20 @@ app.post("/addfunds", async(req,res)=>{
     }
     res.status(200).json({ message: "Funds added successfully" });
 })
+
+app.post("/withdrawfunds", async(req,res)=>{
+    const {amount}=req.body;
+    let funds=await FundsModel.findOne({user: req.user._id});
+    if(!funds){
+        return res.status(400).json({ message: "No funds available to withdraw" });
+    }
+    const newavailable=funds.available-Number(amount);
+    const newpayin=funds.payin-Number(amount);
+    funds.available=Number((newavailable).toFixed(2));
+    funds.payin= Number((newpayin).toFixed(2));
+    await funds.save();
+    res.status(200).json({ message: "Funds withdrawn successfully" });
+});
 app.get("/allHoldings", async(req,res)=>{
     let allHoldings=await HoldingsModel.find({user: req.user._id});
     res.json(allHoldings);

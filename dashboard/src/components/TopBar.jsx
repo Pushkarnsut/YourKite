@@ -1,13 +1,14 @@
 import Menu from "./Menu";
 import { useEffect,useState } from "react";
 import axios from "axios";
+import API from "../Api";
 
 export default function TopBar({user}) {
   const [indices, setIndices] = useState([]);
 
   useEffect(() => {
     const fetchIndices = () => {
-      axios.get("http://localhost:3000/api/indices").then(res => setIndices(res.data));
+      API.get("/api/indices").then(res => setIndices(res.data));
     };
     fetchIndices();
     const interval = setInterval(fetchIndices, 1000);
