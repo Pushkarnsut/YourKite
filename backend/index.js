@@ -31,15 +31,6 @@ app.use(cors({
     credentials: true
 }));
 
-console.log("=== ENVIRONMENT DEBUG ===");
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("Session cookie sameSite:", process.env.NODE_ENV === 'production' ? 'none' : 'lax');
-console.log("Session cookie secure:", process.env.NODE_ENV === 'production');
-console.log("CORS origins:", process.env.NODE_ENV === 'production' 
-    ? ["https://your-kite.vercel.app", "https://yourkite-dashboard.vercel.app"]
-    : ["localhost"]);
-console.log("========================");
-
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -67,31 +58,8 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new localStrategy(UsersModel.authenticate()));
-// passport.serializeUser(UsersModel.serializeUser());
-// passport.deserializeUser(UsersModel.deserializeUser());
-passport.serializeUser((user, done) => {
-    console.log("=== SERIALIZING USER ===");
-    console.log("User ID:", user._id);
-    console.log("User object:", { id: user._id, username: user.username });
-    done(null, user._id);
-});
-passport.deserializeUser(async (id, done) => {
-    console.log("=== DESERIALIZING USER ===");
-    console.log("Looking for user ID:", id);
-    try {
-        const user = await UsersModel.findById(id);
-        console.log("Found user:", user ? { id: user._id, username: user.username } : "null");
-        if (user) {
-            done(null, user);
-        } else {
-            console.log("User not found in database");
-            done(null, false);
-        }
-    } catch (error) {
-        console.error("Deserialization error:", error);
-        done(error, null);
-    }
-});
+passport.serializeUser(UsersModel.serializeUser());
+passport.deserializeUser(UsersModel.deserializeUser());
 
 const activeSessions = new Map();
 
@@ -197,12 +165,6 @@ app.post("/signup",async (req,res)=>{
 
 app.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
-        if (err) {
-            return res.status(500).json({ message: "Authentication error" });
-        }
-        if (!user) {
-            return res.status(401).json({ message: "Invalid credentials" });
-        }
         req.login(user, (err) => {
             if (err) {
                 return res.status(500).json({ message: "Login error" });
@@ -210,13 +172,6 @@ app.post("/login", (req, res, next) => {
             const sessionId = Date.now().toString();
             activeSessions.set(user._id.toString(), sessionId);
             req.session.sessionId = sessionId;
-
-            console.log("=== LOGIN SUCCESS DEBUG ===");
-            console.log("Session ID after login:", req.session.id);
-            console.log("Session cookie settings:", req.session.cookie);
-            console.log("User logged in:", user.username);
-            console.log("Response headers will include Set-Cookie for domain:", req.get('host'));
-            console.log("============================");
 
             return res.status(200).json({
                 message: "Login successful",
@@ -247,15 +202,6 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/check-auth", (req, res) => {
-   console.log("=== AUTH DEBUG ===");
-    console.log("Cookies received:", req.headers.cookie); 
-    console.log("Session cookie settings:", req.session.cookie);
-    console.log("Is authenticated:", req.isAuthenticated());
-    console.log("Session ID:", req.session.id);
-    console.log("Session data:", req.session);
-    console.log("Passport user:", req.user);
-    console.log("Session passport:", req.session.passport);
-    console.log("==================");
     if (req.isAuthenticated()) {
         const userId = req.user._id.toString();
         const sessionId = req.session.sessionId;
