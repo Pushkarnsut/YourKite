@@ -158,20 +158,33 @@ app.post("/signup",async (req,res)=>{
     }
 })
 
-app.post("/login",passport.authenticate("local",{failureRedirect:"/login"}),(req,res)=>{
-    const sessionId = Date.now().toString();
-    activeSessions.set(req.user._id.toString(),sessionId);
-    req.session.sessionId = sessionId;
-
-    res.status(200).json({
-        message:"Login successful",
-        user:{
-            id:req.user._id,
-            username:req.user.username,
-            name:req.user.name,
-            email:req.user.email
+app.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+        if (err) {
+            return res.status(500).json({ message: "Authentication error" });
         }
-    });
+        if (!user) {
+            return res.status(401).json({ message: "Invalid credentials" });
+        }
+        req.login(user, (err) => {
+            if (err) {
+                return res.status(500).json({ message: "Login error" });
+            }
+            const sessionId = Date.now().toString();
+            activeSessions.set(user._id.toString(), sessionId);
+            req.session.sessionId = sessionId;
+
+            return res.status(200).json({
+                message: "Login successful",
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    name: user.name,
+                    email: user.email
+                }
+            });
+        });
+    })(req, res, next);
 });
 
 app.post("/logout", (req, res) => {
