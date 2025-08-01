@@ -10,7 +10,7 @@ axios.interceptors.response.use(
   response => response,
   error => {
     if (error.response && error.response.status === 401) {
-      window.location.reload();
+      window.location.href = import.meta.env.VITE_LOGIN_URL;
     }
     return Promise.reject(error);
   }

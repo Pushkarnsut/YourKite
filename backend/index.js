@@ -54,7 +54,6 @@ const sessionOptions={
     }
 }
 app.use(session(sessionOptions));
-
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new localStrategy(UsersModel.authenticate()));
@@ -81,6 +80,7 @@ app.use((req, res, next) => {
                 if (err) {
                     console.error("Error logging out:", err);
                 }
+                res.clearCookie('connect.sid');
                 return res.status(401).json({
                     isAuthenticated: false,
                     message: "You have been logged in from another device or browser. Please login again."
