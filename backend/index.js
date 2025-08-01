@@ -15,6 +15,7 @@ const {PositionsModel}=require("./model/PositionsModel");
 const {OrdersModel}=require("./model/OrdersModel");
 const {FundsModel}=require("./model/FundsModel");
 const {UsersModel}=require("./model/UsersModel");
+const {UserSessionModel}=require("./model/UsersSessionModel");
 
 const port=process.env.PORT || 3000;
 const url=process.env.MONGO_URL;
@@ -60,7 +61,7 @@ passport.use(new localStrategy(UsersModel.authenticate()));
 passport.serializeUser(UsersModel.serializeUser());
 passport.deserializeUser(UsersModel.deserializeUser());
 
-const activeSessions = new Map();
+//const activeSessions = new Map();
 
 // const isAuthenticated = (req, res, next) => {
 //   if (!req.isAuthenticated()) {
@@ -68,13 +69,14 @@ const activeSessions = new Map();
 //   }
 //   next();
 // };
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
     if (req.isAuthenticated()) {
         const userId = req.user._id.toString();
         const sessionId = req.session.sessionId;
         
-        const currentSessionId = activeSessions.get(userId);
-        
+        const userSession=await UserSessionModel.findOne({ userId });
+        const currentSessionId = userSession ? userSession.sessionId : null;
+
         if (!currentSessionId || currentSessionId !== sessionId) {
             req.logout(function(err) {
                 if (err) {
@@ -165,12 +167,18 @@ app.post("/signup",async (req,res)=>{
 
 app.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
-        req.login(user, (err) => {
+        if (err) return res.status(500).json({ message: "Authentication error" });
+        if (!user) return res.status(401).json({ message: "Invalid credentials" });
+        req.login(user, async (err) => {
             if (err) {
                 return res.status(500).json({ message: "Login error" });
             }
             const sessionId = Date.now().toString();
-            activeSessions.set(user._id.toString(), sessionId);
+            await UserSessionModel.findOneAndUpdate(
+                { userId: user._id },
+                { sessionId: sessionId, lastActive: Date.now() },
+                { upsert: true, new: true }
+            );
             req.session.sessionId = sessionId;
 
             return res.status(200).json({
@@ -201,11 +209,10 @@ app.post("/login", (req, res, next) => {
 //     });
 // });
 
-app.post("/logout", (req, res) => {
-
+app.post("/logout",async (req, res) => {
     if (req.isAuthenticated()) {
         const userId = req.user._id.toString();
-        activeSessions.delete(userId);
+        await UserSessionModel.findOneAndDelete({ userId });
     }
     req.session.sessionId = null;
     req.logout(function(err) {
@@ -216,11 +223,12 @@ app.post("/logout", (req, res) => {
     });
 });
 
-app.get("/check-auth", (req, res) => {
+app.get("/check-auth",async (req, res) => {
     if (req.isAuthenticated()) {
         const userId = req.user._id.toString();
         const sessionId = req.session.sessionId;
-        const currentSessionId = activeSessions.get(userId);
+        const userSession = await UserSessionModel.findOne({ userId });
+        const currentSessionId = userSession ? userSession.sessionId : null;
         if (!currentSessionId || currentSessionId !== sessionId) {
             req.logout(function(err) {
                 if (err) {
