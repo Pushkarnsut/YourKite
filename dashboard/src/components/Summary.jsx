@@ -12,7 +12,7 @@ export default function Summary({ user }) {
 
   const[allFunds,setAllFunds]=useState({available: 0, used: 0, payin: 0});
   useEffect(()=>{
-    if (fundsRef.current.length > 0) {
+    if (fundsRef.current.available > 0) {
         setAllFunds(fundsRef.current);
     }
     API.get("/Funds").then((res)=>{
@@ -24,7 +24,7 @@ export default function Summary({ user }) {
 
   const[allHoldings,setAllHoldings]=useState([]);
     useEffect(()=>{
-      if (holdingsRef.current.length > 0) {
+      if (holdingsRef.current.available > 0) {
       setAllHoldings(holdingsRef.current);
       }
       API.get("/allHoldings").then((res)=>{
@@ -36,7 +36,7 @@ export default function Summary({ user }) {
   const [livePrices, setLivePrices] = useState([]);
   useEffect(() => {
     const fetchPrices = () => {
-      if (pricesRef.current.length > 0) {
+      if (pricesRef.current.available > 0) {
       setLivePrices(pricesRef.current);
      }
       API.get("/api/watchlist").then((res) => {

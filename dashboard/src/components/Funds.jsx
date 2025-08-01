@@ -10,7 +10,7 @@ export default function Funds() {
 
   const[allFunds,setAllFunds]=useState([]);
     useEffect(()=>{
-      if (fundsRef.current.length > 0) {
+      if (fundsRef.current.available > 0) {
         setAllFunds(fundsRef.current);
       }
       API.get("/Funds").then((res)=>{

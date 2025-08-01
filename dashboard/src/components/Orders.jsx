@@ -8,7 +8,7 @@ export default function Orders() {
 
   const[allOrders,setAllOrders]=useState([]);
     useEffect(()=>{
-      if (ordersRef.current.length > 0) {
+      if (ordersRef.current.available > 0) {
         setAllOrders(ordersRef.current);
       }
       API.get("/allOrders").then((res)=>{

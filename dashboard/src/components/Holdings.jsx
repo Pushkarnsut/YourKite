@@ -9,7 +9,7 @@ export default function Holdings() {
 
   const[allHoldings,setAllHoldings]=useState([]);
   useEffect(()=>{
-    if (holdingsRef.current.length > 0) {
+    if (holdingsRef.current.available > 0) {
       setAllHoldings(holdingsRef.current);
     }
     API.get("/allHoldings").then((res)=>{
@@ -20,7 +20,7 @@ export default function Holdings() {
 
   const [livePrices, setLivePrices] = useState([]);
   useEffect(() => {
-    if (pricesRef.current.length > 0) {
+    if (pricesRef.current.available > 0) {
       setLivePrices(pricesRef.current);
     }
 
