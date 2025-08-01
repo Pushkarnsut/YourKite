@@ -1,20 +1,32 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import axios from "axios";
 import API from "../Api";
 // import { holdings } from "../dataset/data";
 
 export default function Holdings() {
+  const holdingsRef = useRef([]);
+  const pricesRef = useRef([]);
+
   const[allHoldings,setAllHoldings]=useState([]);
   useEffect(()=>{
+    if (holdingsRef.current.length > 0) {
+      setAllHoldings(holdingsRef.current);
+    }
     API.get("/allHoldings").then((res)=>{
+      holdingsRef.current = res.data;
       setAllHoldings(res.data);
     })
   },[]);
 
   const [livePrices, setLivePrices] = useState([]);
   useEffect(() => {
+    if (pricesRef.current.length > 0) {
+      setLivePrices(pricesRef.current);
+    }
+
     const fetchPrices = () => {
       API.get("/api/watchlist").then((res) => {
+        pricesRef.current = res.data;
         setLivePrices(res.data);
       }).catch((err)=>{
         setLivePrices([]);

@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
-import {useState,useEffect} from "react";
+import {useState,useEffect,useRef} from "react";
 import AddFundsWindow from "./AddFundsWindow";
 import WithdrawFundsWindow from "./WithdrawFundsWindow";
 import axios from "axios";
 import API from "../Api";
 
 export default function Funds() {
+  const fundsRef = useRef([]);
+
   const[allFunds,setAllFunds]=useState([]);
     useEffect(()=>{
+      if (fundsRef.current.length > 0) {
+        setAllFunds(fundsRef.current);
+      }
       API.get("/Funds").then((res)=>{
+        fundsRef.current = res.data;
         setAllFunds(res.data);
       })
     },[]);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef} from "react";
 import axios from "axios";
 import API from "../Api";
 import millify from "millify";
@@ -6,9 +6,17 @@ import millify from "millify";
 import DoughnutChart from "./DoughnutChart";
 
 export default function Summary({ user }) {
+  const fundsRef = useRef({available: 0, used: 0, payin: 0});
+  const holdingsRef = useRef([]);
+  const pricesRef = useRef([]);
+
   const[allFunds,setAllFunds]=useState({available: 0, used: 0, payin: 0});
   useEffect(()=>{
+    if (fundsRef.current.length > 0) {
+        setAllFunds(fundsRef.current);
+    }
     API.get("/Funds").then((res)=>{
+      fundsRef.current = res.data;
       setAllFunds(res.data);
      })
   },[]);
@@ -16,7 +24,11 @@ export default function Summary({ user }) {
 
   const[allHoldings,setAllHoldings]=useState([]);
     useEffect(()=>{
+      if (holdingsRef.current.length > 0) {
+      setAllHoldings(holdingsRef.current);
+      }
       API.get("/allHoldings").then((res)=>{
+        holdingsRef.current = res.data;
         setAllHoldings(res.data);
       })
     },[]);
@@ -24,7 +36,11 @@ export default function Summary({ user }) {
   const [livePrices, setLivePrices] = useState([]);
   useEffect(() => {
     const fetchPrices = () => {
+      if (pricesRef.current.length > 0) {
+      setLivePrices(pricesRef.current);
+     }
       API.get("/api/watchlist").then((res) => {
+        pricesRef.current = res.data;
         setLivePrices(res.data);
       }).catch((err)=>{
         setLivePrices([]);

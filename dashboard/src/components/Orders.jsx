@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import axios from "axios";
 import API from "../Api";
 
 export default function Orders() {
+  const ordersRef = useRef([]);
+
   const[allOrders,setAllOrders]=useState([]);
     useEffect(()=>{
+      if (ordersRef.current.length > 0) {
+        setAllOrders(ordersRef.current);
+      }
       API.get("/allOrders").then((res)=>{
+        ordersRef.current = res.data;
         setAllOrders(res.data);
       })
     },[]);
