@@ -90,8 +90,9 @@ app.use(async (req, res, next) => {
             });
             return;
         }
+        return next();
     }
-    next();
+    return next();
 });
 
 async function createInitialFundsForUser(userId) {
