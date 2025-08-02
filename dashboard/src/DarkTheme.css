@@ -1,4 +1,4 @@
-/* Body and Main Containers */
+/* === BODY & MAIN CONTAINERS === */
 body.dark-mode {
   background-color: #1e1e1e !important;
   color: #e8e8e8 !important;
@@ -12,7 +12,7 @@ body.dark-mode {
   background-color: #2a2a2a;
 }
 
-/* TopBar */
+/* === TOPBAR === */
 .dark-mode .topbar-container {
   background-color: #212121 !important;
   box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4) !important;
@@ -23,24 +23,23 @@ body.dark-mode {
   border-right: 1px solid #404040 !important;
 }
 
-/* Menu Container */
+/* === MENU === */
 .dark-mode .menu-container {
-  background-color: #262626; 
+  background-color: #262626;
   border-right: 1px solid #333333;
 }
 
 .dark-mode .menu {
-  color: #d4d4d4; 
+  color: #d4d4d4;
 }
 
 .dark-mode .menu:hover {
-  color: #ff6b35; 
-  background-color: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
 }
 
 .dark-mode .menu.selected {
-  color: #ff6b35; 
-  background-color: rgba(255, 107, 53, 0.15);
+  color: #ff6b35;
+  background-color: rgba(255, 107, 53, 0.1);
 }
 
 .dark-mode .profile .username {
@@ -52,7 +51,7 @@ body.dark-mode {
   color: white;
 }
 
-/* Profile Dropdown */
+/* === PROFILE DROPDOWN === */
 .dark-mode .profileopen-dropdown {
   background-color: #2d2d2d;
   border: 1px solid #444444;
@@ -60,7 +59,7 @@ body.dark-mode {
 }
 
 .dark-mode .theme-toggle-option {
-  color: #64b5f6 !important; 
+  color: #64b5f6 !important;
 }
 
 .dark-mode .theme-toggle-option:hover {
@@ -68,14 +67,14 @@ body.dark-mode {
 }
 
 .dark-mode .logout-btn {
-  color: #ff7043 !important; 
+  color: #ff7043 !important;
 }
 
 .dark-mode .logout-btn:hover {
   background-color: rgba(255, 112, 67, 0.1);
 }
 
-/* Watchlist */
+/* === WATCHLIST === */
 .dark-mode .watchlist-container {
   background-color: #252525;
   box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3);
@@ -86,12 +85,6 @@ body.dark-mode {
   background-color: #252525;
   color: #e8e8e8;
   border-bottom: 1px solid #404040;
-}
-
-.dark-mode .search input {
-  background-color: #2d2d2d;
-  color: #e8e8e8;
-  border: 1px solid #404040;
 }
 
 .dark-mode .counts {
@@ -107,224 +100,6 @@ body.dark-mode {
   background-color: #2d2d2d;
 }
 
-/* Tables */
-.dark-mode .order-table table {
-  background-color: #1e1e1e;
-}
-
-.dark-mode .order-table tr {
-  border-top: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-}
-
-.dark-mode .order-table th {
-  color: #b0b0b0;
-  background-color: #2a2a2a;
-  font-weight: 500;
-}
-
-.dark-mode .order-table td {
-  color: #d4d4d4;
-  background-color: #1e1e1e;
-}
-
-.dark-mode .order-table tr th:nth-child(1),
-.dark-mode .order-table tr th:nth-child(4) {
-  border-right: 1px solid #333333;
-}
-
-.dark-mode .order-table tr td:nth-child(1),
-.dark-mode .order-table tr td:nth-child(4) {
-  border-right: 1px solid #333333;
-}
-
-.dark-mode .order-table td.profit {
-  color: #66bb6a !important;
-}
-
-.dark-mode .order-table td.loss {
-  color: #ff5252 !important;
-}
-
-/* Stock Colors - General Rules */
-.dark-mode .profit,
-.dark-mode .up {
-  color: #4caf50 !important; 
-}
-
-.dark-mode .loss,
-.dark-mode .down {
-  color: #ff5252 !important; 
-}
-
-.dark-mode .data .first .profit {
-  color: #66bb6a !important;
-}
-
-.dark-mode .data .first .loss {
-  color: #ff5252 !important;
-}
-
-/* Text Colors */
-.dark-mode .title {
-  color: #e8e8e8;
-  font-weight: 500;
-}
-
-.dark-mode .col h5 {
-  color: #d4d4d4;
-}
-
-.dark-mode .username h6 {
-  color: #d4d4d4;
-}
-
-.dark-mode .section span p {
-  color: #e8e8e8;
-}
-
-.dark-mode .data .first h3 {
-  color: #e8e8e8;
-}
-
-.dark-mode .data .first p {
-  color: #b0b0b0;
-}
-
-.dark-mode .data .second p {
-  color: #b0b0b0;
-}
-
-.dark-mode .imp {
-  color: #d4d4d4;
-}
-
-.dark-mode .imp-colored {
-  color: #64b5f6;
-}
-
-/* Index Labels - General Rule */
-.dark-mode .index {
-  color: #b0b0b0 !important;
-}
-
-/* Buttons */
-.dark-mode .action {
-  background-color: #2a2a2a;
-  border: 1px solid #404040;
-  color: #d4d4d4;
-}
-
-.dark-mode .action:hover {
-  background-color: #333333;
-  border-color: #555555;
-}
-
-.dark-mode .buy {
-  background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
-  color: white;
-  border: none;
-}
-
-.dark-mode .sell {
-  background: linear-gradient(135deg, #ff7043 0%, #d84315 100%);
-  color: white;
-  border: none;
-}
-
-.dark-mode .btn-blue {
-  background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
-  color: white;
-  border: none;
-}
-
-.dark-mode .btn-grey {
-  background-color: #404040;
-  color: #d4d4d4;
-  border: 1px solid #555555;
-}
-
-.dark-mode .btn-grey:hover {
-  background-color: #4a4a4a;
-}
-
-/* Input Fields & Windows */
-.dark-mode input,
-.dark-mode fieldset {
-  background-color: #2a2a2a;
-  color: #e8e8e8;
-  border: 1px solid #404040;
-}
-
-.dark-mode fieldset legend {
-  color: #e8e8e8 !important; 
-  background-color: #2a2a2a;
-  padding: 0 8px;
-  font-weight: 500;
-}
-
-.dark-mode input:focus {
-  outline: none;
-  border-color: #64b5f6;
-  box-shadow: 0 0 0 2px rgba(100, 181, 246, 0.2);
-}
-
-/* Containers/Windows */
-.dark-mode .container {
-  background-color: #252525;
-  border: 1px solid #404040;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-.dark-mode .regular-order {
-  background-color: #252525;
-}
-
-.dark-mode .buttons {
-  background-color: #252525;
-}
-
-/* Funds Table */
-.dark-mode .table-funds {
-  border: 1px solid #404040;
-  background-color: #252525;
-}
-
-.dark-mode .table-funds .data p:first-child {
-  color: #b0b0b0;
-}
-
-.dark-mode .table-funds hr {
-  background: #404040;
-}
-
-/* Borders and Dividers */
-.dark-mode .divider {
-  background: #404040;
-}
-
-.dark-mode .data hr {
-  border-left: 1px solid #404040;
-}
-
-.dark-mode .section hr {
-  background: #404040;
-}
-
-.dark-mode hr {
-  border-color: #404040;
-}
-
-/* Inline Style Overrides */
-.dark-mode [style*="color: #666"] {
-  color: #b0b0b0 !important;
-}
-
-.dark-mode [style*="color: #999"] {
-  color: #9e9e9e !important;
-}
-
-/* Watchlist Numbers */
 .dark-mode .watchlist-number {
   background: #252525;
   border: 1px solid #404040;
@@ -338,113 +113,109 @@ body.dark-mode {
   background: #2d2d2d;
 }
 
-/* Orders Page */
-.dark-mode .no-orders .icon {
-  color: #9e9e9e;
+/* === TABLES === */
+.dark-mode .order-table th {
+  color: #b0b0b0;
+  background-color: #2a2a2a;
 }
 
+.dark-mode .order-table td {
+  color: #d4d4d4;
+}
+
+.dark-mode .order-table tr {
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+}
+
+.dark-mode .order-table tr th:nth-child(1),
+.dark-mode .order-table tr th:nth-child(4),
+.dark-mode .order-table tr td:nth-child(1),
+.dark-mode .order-table tr td:nth-child(4) {
+  border-right: 1px solid #333333;
+}
+
+/* === TEXT & FONT COLORS === */
+.dark-mode .title {
+  color: #e8e8e8;
+}
+
+.dark-mode .col h5,
+.dark-mode .username h6 {
+  color: #d4d4d4;
+}
+
+.dark-mode .section span p,
+.dark-mode .data .first h3 {
+  color: #e8e8e8;
+}
+
+.dark-mode .data .first p,
+.dark-mode .data .second p,
 .dark-mode .no-orders p {
   color: #b0b0b0;
 }
 
-/* TopBar Indices - Dark Mode */
-body.dark-mode .topbar-container .indices-container .nifty,
-body.dark-mode .topbar-container .indices-container .sensex {
-  color: #d4d4d4 !important;
+.dark-mode .imp {
+  color: #d4d4d4;
 }
 
-body.dark-mode .topbar-container .indices-container .nifty .index,
-body.dark-mode .topbar-container .indices-container .sensex .index,
-body.dark-mode .topbar-container .nifty .index,
-body.dark-mode .topbar-container .sensex .index,
-body.dark-mode .nifty .index,
-body.dark-mode .sensex .index {
-  color: #b0b0b0 !important;
-  font-weight: 500 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+.dark-mode .imp-colored {
+  color: #64b5f6;
 }
 
-/* Price values - Nuclear Override */
-body.dark-mode .topbar-container .indices-container .nifty p:nth-child(2),
-body.dark-mode .topbar-container .indices-container .sensex p:nth-child(2),
-body.dark-mode .topbar-container .nifty p:nth-child(2),
-body.dark-mode .topbar-container .sensex p:nth-child(2) {
-  color: #d4d4d4 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-body.dark-mode .topbar-container .indices-container .up,
-body.dark-mode .topbar-container .up,
-body.dark-mode .topbar-container .nifty .up,
-body.dark-mode .topbar-container .sensex .up {
-  color: #4caf50 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-body.dark-mode .topbar-container .indices-container .down,
-body.dark-mode .topbar-container .down,
-body.dark-mode .topbar-container .nifty .down,
-body.dark-mode .topbar-container .sensex .down {
-  color: #ff5252 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-body.dark-mode .topbar-container .indices-container .percent,
-body.dark-mode .topbar-container .percent {
-  color: #9e9e9e !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Add at the VERY END of DarkTheme.css - FINAL OVERRIDE */
-
-/* ULTIMATE NUCLEAR OPTION - Maximum Specificity */
-html body.dark-mode .up,
-html body.dark-mode .topbar-container .up,
-html body.dark-mode .indices-container .up,
-html body.dark-mode .nifty .up,
-html body.dark-mode .sensex .up {
+/* === STOCK & INDICATOR COLORS (GENERAL) === */
+.dark-mode .up,
+.dark-mode .profit {
   color: #4caf50 !important;
 }
 
-html body.dark-mode .down,
-html body.dark-mode .topbar-container .down,
-html body.dark-mode .indices-container .down,
-html body.dark-mode .nifty .down,
-html body.dark-mode .sensex .down {
+.dark-mode .down,
+.dark-mode .loss {
   color: #ff5252 !important;
 }
 
-html body.dark-mode .index,
-html body.dark-mode .topbar-container .index,
-html body.dark-mode .indices-container .index,
-html body.dark-mode .nifty .index,
-html body.dark-mode .sensex .index {
-  color: #b0b0b0 !important;
-  font-weight: 500 !important;
-}
-
-/* Force visibility for NIFTY/SENSEX */
-html body.dark-mode .topbar-container * {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-/* FINAL NUCLEAR OPTION - Add at line 436 */
-* .dark-mode .index,
-*:not(.dark-mode) .dark-mode .index {
+.dark-mode .index {
   color: #b0b0b0 !important;
 }
 
-* .dark-mode .up,
-*:not(.dark-mode) .dark-mode .up {
-  color: #4caf50 !important;
+/* === BUTTONS === */
+.dark-mode .action {
+  background-color: #2a2a2a;
+  border: 1px solid #404040;
+  color: #d4d4d4;
 }
 
-* .dark-mode .down,
-*:not(.dark-mode) .dark-mode .down {
-  color: #ff5252 !important;
+.dark-mode .action:hover {
+  background-color: #333333;
+}
+
+.dark-mode .buy,
+.dark-mode .btn-blue {
+  background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
+  color: white;
+  border: none;
+}
+
+.dark-mode .sell {
+  background: linear-gradient(135deg, #ff7043 0%, #d84315 100%);
+  color: white;
+  border: none;
+}
+
+/* === BORDERS & DIVIDERS === */
+.dark-mode hr,
+.dark-mode .divider,
+.dark-mode .section hr {
+  border-color: #404040;
+  background: #404040;
+}
+
+.dark-mode .data hr {
+  border-left: 1px solid #404040;
+}
+
+/* === MISC === */
+.dark-mode .no-orders .icon {
+  color: #9e9e9e;
 }
