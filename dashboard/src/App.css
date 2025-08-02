@@ -858,6 +858,10 @@ hr {
   cursor: pointer;
 }
 
+.theme-toggle-option:hover {
+  background-color: rgba(66, 165, 245, 0.1);
+}
+
 .theme-toggle-option {
   width: 100%;
   text-align: left;
@@ -873,9 +877,6 @@ hr {
   gap: 10px;
 }
 
-theme-toggle-option:hover {
-  background-color: rgba(66, 165, 245, 0.1);
-}
 
 .dropdown-icon {
   width: 16px;

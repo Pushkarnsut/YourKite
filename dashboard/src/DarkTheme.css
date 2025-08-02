@@ -1,4 +1,4 @@
-
+/* Body and Main Containers */
 body.dark-mode {
   background-color: #1e1e1e !important;
   color: #e8e8e8 !important;
@@ -12,7 +12,18 @@ body.dark-mode {
   background-color: #2a2a2a;
 }
 
-/* Menu Container*/
+/* TopBar */
+.dark-mode .topbar-container {
+  background-color: #212121 !important;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4) !important;
+  border-bottom: 1px solid #333333 !important;
+}
+
+.dark-mode .indices-container {
+  border-right: 1px solid #404040 !important;
+}
+
+/* Menu Container */
 .dark-mode .menu-container {
   background-color: #262626; 
   border-right: 1px solid #333333;
@@ -41,7 +52,7 @@ body.dark-mode {
   color: white;
 }
 
-/* Profile Dropdown*/
+/* Profile Dropdown */
 .dark-mode .profileopen-dropdown {
   background-color: #2d2d2d;
   border: 1px solid #444444;
@@ -64,7 +75,7 @@ body.dark-mode {
   background-color: rgba(255, 112, 67, 0.1);
 }
 
-/*Watchlist*/
+/* Watchlist */
 .dark-mode .watchlist-container {
   background-color: #252525;
   box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3);
@@ -127,6 +138,15 @@ body.dark-mode {
   border-right: 1px solid #333333;
 }
 
+.dark-mode .order-table td.profit {
+  color: #66bb6a !important;
+}
+
+.dark-mode .order-table td.loss {
+  color: #ff5252 !important;
+}
+
+/* Stock Colors - General Rules */
 .dark-mode .profit,
 .dark-mode .up {
   color: #4caf50 !important; 
@@ -135,14 +155,6 @@ body.dark-mode {
 .dark-mode .loss,
 .dark-mode .down {
   color: #ff5252 !important; 
-}
-
-.dark-mode .order-table td.profit {
-  color: #66bb6a !important;
-}
-
-.dark-mode .order-table td.loss {
-  color: #ff5252 !important;
 }
 
 .dark-mode .data .first .profit {
@@ -183,7 +195,6 @@ body.dark-mode {
   color: #b0b0b0;
 }
 
-
 .dark-mode .imp {
   color: #d4d4d4;
 }
@@ -192,7 +203,12 @@ body.dark-mode {
   color: #64b5f6;
 }
 
-/* Buttons*/
+/* Index Labels - General Rule */
+.dark-mode .index {
+  color: #b0b0b0 !important;
+}
+
+/* Buttons */
 .dark-mode .action {
   background-color: #2a2a2a;
   border: 1px solid #404040;
@@ -299,6 +315,7 @@ body.dark-mode {
   border-color: #404040;
 }
 
+/* Inline Style Overrides */
 .dark-mode [style*="color: #666"] {
   color: #b0b0b0 !important;
 }
@@ -321,7 +338,7 @@ body.dark-mode {
   background: #2d2d2d;
 }
 
-/*Orders Page */
+/* Orders Page */
 .dark-mode .no-orders .icon {
   color: #9e9e9e;
 }
@@ -330,24 +347,12 @@ body.dark-mode {
   color: #b0b0b0;
 }
 
-/* TopBar - NUCLEAR OPTION */
-.dark-mode .topbar-container {
-  background-color: #212121 !important;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4) !important;
-  border-bottom: 1px solid #333333 !important;
-}
-
-.dark-mode .indices-container {
-  border-right: 1px solid #404040 !important;
-}
-
-/* NIFTY & SENSEX - MAXIMUM SPECIFICITY */
+/* TopBar Indices - Dark Mode */
 body.dark-mode .topbar-container .indices-container .nifty,
 body.dark-mode .topbar-container .indices-container .sensex {
   color: #d4d4d4 !important;
 }
 
-/* NIFTY 50 & SENSEX labels - ULTIMATE OVERRIDE */
 body.dark-mode .topbar-container .indices-container .nifty .index,
 body.dark-mode .topbar-container .indices-container .sensex .index,
 body.dark-mode .topbar-container .nifty .index,
@@ -360,7 +365,7 @@ body.dark-mode .sensex .index {
   visibility: visible !important;
 }
 
-/* Price values - ULTIMATE OVERRIDE */
+/* Price values - Nuclear Override */
 body.dark-mode .topbar-container .indices-container .nifty p:nth-child(2),
 body.dark-mode .topbar-container .indices-container .sensex p:nth-child(2),
 body.dark-mode .topbar-container .nifty p:nth-child(2),
@@ -370,7 +375,6 @@ body.dark-mode .topbar-container .sensex p:nth-child(2) {
   visibility: visible !important;
 }
 
-/* UP colors - ULTIMATE OVERRIDE */
 body.dark-mode .topbar-container .indices-container .up,
 body.dark-mode .topbar-container .up,
 body.dark-mode .topbar-container .nifty .up,
@@ -380,7 +384,6 @@ body.dark-mode .topbar-container .sensex .up {
   visibility: visible !important;
 }
 
-/* DOWN colors - ULTIMATE OVERRIDE */
 body.dark-mode .topbar-container .indices-container .down,
 body.dark-mode .topbar-container .down,
 body.dark-mode .topbar-container .nifty .down,
@@ -390,10 +393,58 @@ body.dark-mode .topbar-container .sensex .down {
   visibility: visible !important;
 }
 
-/* Percentage - ULTIMATE OVERRIDE */
 body.dark-mode .topbar-container .indices-container .percent,
 body.dark-mode .topbar-container .percent {
   color: #9e9e9e !important;
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+/* Add at the VERY END of DarkTheme.css - FINAL OVERRIDE */
+
+/* ULTIMATE NUCLEAR OPTION - Maximum Specificity */
+html body.dark-mode .up,
+html body.dark-mode .topbar-container .up,
+html body.dark-mode .indices-container .up,
+html body.dark-mode .nifty .up,
+html body.dark-mode .sensex .up {
+  color: #4caf50 !important;
+}
+
+html body.dark-mode .down,
+html body.dark-mode .topbar-container .down,
+html body.dark-mode .indices-container .down,
+html body.dark-mode .nifty .down,
+html body.dark-mode .sensex .down {
+  color: #ff5252 !important;
+}
+
+html body.dark-mode .index,
+html body.dark-mode .topbar-container .index,
+html body.dark-mode .indices-container .index,
+html body.dark-mode .nifty .index,
+html body.dark-mode .sensex .index {
+  color: #b0b0b0 !important;
+  font-weight: 500 !important;
+}
+
+/* Force visibility for NIFTY/SENSEX */
+html body.dark-mode .topbar-container * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+/* FINAL NUCLEAR OPTION - Add at line 436 */
+* .dark-mode .index,
+*:not(.dark-mode) .dark-mode .index {
+  color: #b0b0b0 !important;
+}
+
+* .dark-mode .up,
+*:not(.dark-mode) .dark-mode .up {
+  color: #4caf50 !important;
+}
+
+* .dark-mode .down,
+*:not(.dark-mode) .dark-mode .down {
+  color: #ff5252 !important;
 }
