@@ -1,19 +1,9 @@
 import Menu from "./Menu";
-import { useEffect,useState } from "react";
-import axios from "axios";
-import API from "../Api";
+import {useContext } from "react";
+import StockDataContext from "../context/StockDataContext";
 
 export default function TopBar({user}) {
-  const [indices, setIndices] = useState([]);
-
-  useEffect(() => {
-    const fetchIndices = () => {
-      API.get("/api/indices").then(res => setIndices(res.data));
-    };
-    fetchIndices();
-    const interval = setInterval(fetchIndices, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const { indices } = useContext(StockDataContext);
 
   return (
     <div className="topbar-container">

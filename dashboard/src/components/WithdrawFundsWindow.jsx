@@ -1,25 +1,20 @@
 import { useState,useEffect } from "react";
-// import "./BuyWindow.css";
 import axios from "axios";
 import API from "../Api";
+import StockDataContext from "../context/StockDataContext";
 
 export default function WithdrawFundsWindow({ close }) {
+  const { funds: allFunds } = useContext(StockDataContext);
   const [newamount, setNewAmount] = useState(1);
-  const [allFunds, setAllFunds] = useState([]);
 
-  useEffect(()=>{
-        API.get("/Funds").then((res)=>{
-          setAllFunds(res.data);
-         })
-  },[]);
-  const handleAddClick = () => {
+  const handleWithdrawClick = () => {
       API.post("/withdrawfunds", {
         amount: newamount
       });
       close();
       window.location.reload();
     };
-  const canadd= newamount > 0 && newamount <= allFunds.available;
+  const canWithdraw = newamount > 0 && newamount <= allFunds.available;
 
 
   return (
@@ -37,18 +32,28 @@ export default function WithdrawFundsWindow({ close }) {
               value={newamount}
             />
           </fieldset>
+          <div style={{ marginTop: "1rem", fontSize: "14px", color: "#666" }}>
+            Available for Withdrawal: ₹{allFunds.available}
+          </div>
         </div>
       </div>
 
       <div className="buttons">
         <div>
-          <button className="btn btn-blue" onClick={handleAddClick} disabled={!canadd} >
+          <button className="btn btn-blue" onClick={handleWithdrawClick} disabled={!canWithdraw} >
             Withdraw
           </button>
           <button className="btn btn-grey" onClick={close} >
             Cancel
           </button>
         </div>
+      </div>
+      <div style={{paddingTop:"1rem",paddingLeft:"1.2rem"}}>
+        {!canWithdraw && newamount > allFunds.available && (
+          <span style={{ color: "red" }}>
+            Insufficient funds. Available: ₹{allFunds.available}
+          </span>
+        )}
       </div>
     </div>
   );

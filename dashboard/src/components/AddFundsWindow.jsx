@@ -1,9 +1,10 @@
-import { useState } from "react";
-// import "./BuyWindow.css";
+import { useState,useContext } from "react";
 import axios from "axios";
 import API from "../Api";
+import StockDataContext from "../context/StockDataContext";
 
 export default function AddFundsWindow({ close }) {
+  const { funds: allFunds } = useContext(StockDataContext);
   const [newamount, setNewAmount] = useState(100);
   const handleAddClick = () => {
       API.post("/addfunds", {
@@ -13,8 +14,6 @@ export default function AddFundsWindow({ close }) {
       window.location.reload();
     };
   
-
-
   return (
     <div className="container" id="buy-window" draggable="true">
       <div className="regular-order">
@@ -30,6 +29,9 @@ export default function AddFundsWindow({ close }) {
               value={newamount}
             />
           </fieldset>
+          <div style={{ marginTop: "1rem", fontSize: "14px", color: "#666" }}>
+            Current Available: ₹{allFunds.available}
+          </div>
         </div>
       </div>
 

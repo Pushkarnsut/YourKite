@@ -8,6 +8,7 @@ export function StockDataProvider({ children }) {
   const [allFunds, setAllFunds] = useState({available: 0, used: 0, payin: 0});
   const [allOrders, setAllOrders] = useState([]);
   const [allPositions, setAllPositions] = useState([]);
+  const [indices, setIndices] = useState([]);
 
   useEffect(() => {
     API.get("/allHoldings")
@@ -65,6 +66,18 @@ export function StockDataProvider({ children }) {
     return () => clearInterval(interval); 
   }, []);
 
+  useEffect(() => {
+    const fetchLiveData = () => {
+      API.get("/api/indices")
+        .then((res) => setIndices(res.data))
+        .catch((err) => console.error("Error fetching indices:", err));
+    };
+
+    fetchLiveData();
+    const interval = setInterval(fetchLiveData, 1000);
+    return () => clearInterval(interval); 
+  }, []);
+
   const mergedHoldings = allHoldings.map((holding) => {
     const live = livePrices.find((s) => s.name === holding.name);
     return live ? { ...holding, price: live.price, day: live.percentageChange } : holding;
@@ -92,6 +105,7 @@ export function StockDataProvider({ children }) {
       orders: allOrders,
       positions: allPositions,
       livePrices,
+      indices,
       totalInvestment,
       totalCurrInvestment,
       totalProfit,
