@@ -330,40 +330,70 @@ body.dark-mode {
   color: #b0b0b0;
 }
 
-
-/* TopBar*/
+/* TopBar - NUCLEAR OPTION */
 .dark-mode .topbar-container {
-  background-color: #212121;
-  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid #333333;
+  background-color: #212121 !important;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4) !important;
+  border-bottom: 1px solid #333333 !important;
 }
 
 .dark-mode .indices-container {
-  border-right: 1px solid #404040;
+  border-right: 1px solid #404040 !important;
 }
 
-.dark-mode .nifty,
-.dark-mode .sensex {
-  color: #d4d4d4;
-}
-
-.dark-mode .topbar-container .indices-container .index {
-  color: #b0b0b0 !important;
-  font-weight: 500;
-}
-
-.dark-mode .topbar-container .indices-container .nifty p:nth-child(2),
-.dark-mode .topbar-container .indices-container .sensex p:nth-child(2) {
+/* NIFTY & SENSEX - MAXIMUM SPECIFICITY */
+body.dark-mode .topbar-container .indices-container .nifty,
+body.dark-mode .topbar-container .indices-container .sensex {
   color: #d4d4d4 !important;
 }
 
-.dark-mode .topbar-container .indices-container .up {
-  color: #4caf50 !important;
+/* NIFTY 50 & SENSEX labels - ULTIMATE OVERRIDE */
+body.dark-mode .topbar-container .indices-container .nifty .index,
+body.dark-mode .topbar-container .indices-container .sensex .index,
+body.dark-mode .topbar-container .nifty .index,
+body.dark-mode .topbar-container .sensex .index,
+body.dark-mode .nifty .index,
+body.dark-mode .sensex .index {
+  color: #b0b0b0 !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-.dark-mode .topbar-container .indices-container .down {
-  color: #ff5252 !important;
+/* Price values - ULTIMATE OVERRIDE */
+body.dark-mode .topbar-container .indices-container .nifty p:nth-child(2),
+body.dark-mode .topbar-container .indices-container .sensex p:nth-child(2),
+body.dark-mode .topbar-container .nifty p:nth-child(2),
+body.dark-mode .topbar-container .sensex p:nth-child(2) {
+  color: #d4d4d4 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
-.dark-mode .topbar-container .indices-container .percent {
+
+/* UP colors - ULTIMATE OVERRIDE */
+body.dark-mode .topbar-container .indices-container .up,
+body.dark-mode .topbar-container .up,
+body.dark-mode .topbar-container .nifty .up,
+body.dark-mode .topbar-container .sensex .up {
+  color: #4caf50 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* DOWN colors - ULTIMATE OVERRIDE */
+body.dark-mode .topbar-container .indices-container .down,
+body.dark-mode .topbar-container .down,
+body.dark-mode .topbar-container .nifty .down,
+body.dark-mode .topbar-container .sensex .down {
+  color: #ff5252 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Percentage - ULTIMATE OVERRIDE */
+body.dark-mode .topbar-container .indices-container .percent,
+body.dark-mode .topbar-container .percent {
   color: #9e9e9e !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
