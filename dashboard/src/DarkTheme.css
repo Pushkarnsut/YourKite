@@ -1,122 +1,333 @@
-/* ✅ Body and Main Containers */
-.dark-mode .profileopen-dropdown {
-  background-color: #2d2d2d !important;
-  border: 1px solid #505050;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
-.dark-mode .theme-toggle-option {
-  color: #42a5f5 !important;
-}
-
-.dark-mode .theme-toggle-option:hover {
-  background-color: rgba(66, 165, 245, 0.1);
-}
-
-.dark-mode .logout-btn {
-  color: #ff6b47 !important;
-}
-
-.dark-mode .logout-btn:hover {
-  background-color: rgba(255, 107, 71, 0.1);
-}
-
-.dark-mode .dropdown-icon {
-  color: inherit;
-}
 
 body.dark-mode {
-  background-color: #1a1a1a !important;
-  color: #ffffff !important;
+  background-color: #1e1e1e !important;
+  color: #e8e8e8 !important;
 }
 
 .dark-mode .dashboard-container {
-  background-color: #1a1a1a;
+  background-color: #1e1e1e;
 }
 
 .dark-mode .content {
-  background-color: #2d2d2d;
+  background-color: #2a2a2a;
 }
 
-/* ✅ TopBar */
+/* TopBar*/
 .dark-mode .topbar-container {
-  background-color: #1a1a1a;
-  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.5);
+  background-color: #212121;
+  box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #333333;
 }
 
 .dark-mode .indices-container {
   border-right: 1px solid #404040;
 }
 
-/* ✅ Menu Container */
+/* Menu Container*/
 .dark-mode .menu-container {
-  background-color: #252525;
+  background-color: #262626; 
+  border-right: 1px solid #333333;
 }
 
 .dark-mode .menu {
-  color: #cccccc;
+  color: #d4d4d4; 
 }
 
 .dark-mode .menu:hover {
-  color: rgb(245, 104, 52); /* Keep your orange hover */
+  color: #ff6b35; 
+  background-color: rgba(255, 107, 53, 0.1);
 }
 
 .dark-mode .menu.selected {
-  color: rgb(245, 104, 52); /* Keep your orange selected */
+  color: #ff6b35; 
+  background-color: rgba(255, 107, 53, 0.15);
 }
 
-/* ✅ Profile */
 .dark-mode .profile .username {
-  color: #ffffff;
+  color: #e8e8e8;
 }
 
 .dark-mode .avatar {
-  background-color: #4184f3;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
 
-/* ✅ Keep Your Existing Dropdown CSS - Just Override Background */
+/* Profile Dropdown*/
 .dark-mode .profileopen-dropdown {
-  background-color: #2d2d2d; /* Override your #222 */
-  border: 1px solid #505050;
+  background-color: #2d2d2d;
+  border: 1px solid #444444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .theme-toggle-option {
+  color: #64b5f6 !important; 
+}
+
+.dark-mode .theme-toggle-option:hover {
+  background-color: rgba(100, 181, 246, 0.1);
 }
 
 .dark-mode .logout-btn {
-  color: #cccccc; /* Default text color */
+  color: #ff7043 !important; 
 }
 
 .dark-mode .logout-btn:hover {
-  background-color: #3a3a3a;
+  background-color: rgba(255, 112, 67, 0.1);
 }
 
-/* ✅ Watchlist */
+/*Watchlist*/
 .dark-mode .watchlist-container {
   background-color: #252525;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.3);
+  border-right: 1px solid #333333;
 }
 
 .dark-mode .search {
   background-color: #252525;
-  color: #ffffff;
-  border-bottom: 0.8px solid #404040;
+  color: #e8e8e8;
+  border-bottom: 1px solid #404040;
+}
+
+.dark-mode .search input {
+  background-color: #2d2d2d;
+  color: #e8e8e8;
+  border: 1px solid #404040;
 }
 
 .dark-mode .counts {
-  color: #888888;
+  color: #9e9e9e;
 }
 
 .dark-mode .list li {
-  border-bottom: 0.8px solid #404040;
+  border-bottom: 1px solid #333333;
   background-color: #252525;
 }
 
 .dark-mode .list li:hover {
-  background-color: #3a3a3a;
+  background-color: #2d2d2d;
 }
 
-/* ✅ Watchlist Numbers */
+/* Tables */
+.dark-mode .order-table table {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .order-table tr {
+  border-top: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+}
+
+.dark-mode .order-table th {
+  color: #b0b0b0;
+  background-color: #2a2a2a;
+  font-weight: 500;
+}
+
+.dark-mode .order-table td {
+  color: #d4d4d4;
+  background-color: #1e1e1e;
+}
+
+.dark-mode .order-table tr th:nth-child(1),
+.dark-mode .order-table tr th:nth-child(4) {
+  border-right: 1px solid #333333;
+}
+
+.dark-mode .order-table tr td:nth-child(1),
+.dark-mode .order-table tr td:nth-child(4) {
+  border-right: 1px solid #333333;
+}
+
+.dark-mode .profit,
+.dark-mode .up {
+  color: #4caf50 !important; 
+}
+
+.dark-mode .loss,
+.dark-mode .down {
+  color: #ff5252 !important; 
+}
+
+.dark-mode .order-table td.profit {
+  color: #66bb6a !important;
+}
+
+.dark-mode .order-table td.loss {
+  color: #ff5252 !important;
+}
+
+.dark-mode .data .first .profit {
+  color: #66bb6a !important;
+}
+
+.dark-mode .data .first .loss {
+  color: #ff5252 !important;
+}
+
+/* Text Colors */
+.dark-mode .title {
+  color: #e8e8e8;
+  font-weight: 500;
+}
+
+.dark-mode .col h5 {
+  color: #d4d4d4;
+}
+
+.dark-mode .username h6 {
+  color: #d4d4d4;
+}
+
+.dark-mode .section span p {
+  color: #e8e8e8;
+}
+
+.dark-mode .data .first h3 {
+  color: #e8e8e8;
+}
+
+.dark-mode .data .first p {
+  color: #b0b0b0;
+}
+
+.dark-mode .data .second p {
+  color: #b0b0b0;
+}
+
+.dark-mode .index {
+  color: #b0b0b0;
+}
+
+.dark-mode .percent {
+  color: #9e9e9e;
+}
+
+.dark-mode .imp {
+  color: #d4d4d4;
+}
+
+.dark-mode .imp-colored {
+  color: #64b5f6;
+}
+
+/* Buttons*/
+.dark-mode .action {
+  background-color: #2a2a2a;
+  border: 1px solid #404040;
+  color: #d4d4d4;
+}
+
+.dark-mode .action:hover {
+  background-color: #333333;
+  border-color: #555555;
+}
+
+.dark-mode .buy {
+  background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
+  color: white;
+  border: none;
+}
+
+.dark-mode .sell {
+  background: linear-gradient(135deg, #ff7043 0%, #d84315 100%);
+  color: white;
+  border: none;
+}
+
+.dark-mode .btn-blue {
+  background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
+  color: white;
+  border: none;
+}
+
+.dark-mode .btn-grey {
+  background-color: #404040;
+  color: #d4d4d4;
+  border: 1px solid #555555;
+}
+
+.dark-mode .btn-grey:hover {
+  background-color: #4a4a4a;
+}
+
+/* Input Fields & Windows */
+.dark-mode input,
+.dark-mode fieldset {
+  background-color: #2a2a2a;
+  color: #e8e8e8;
+  border: 1px solid #404040;
+}
+
+.dark-mode fieldset legend {
+  color: #e8e8e8 !important; 
+  background-color: #2a2a2a;
+  padding: 0 8px;
+  font-weight: 500;
+}
+
+.dark-mode input:focus {
+  outline: none;
+  border-color: #64b5f6;
+  box-shadow: 0 0 0 2px rgba(100, 181, 246, 0.2);
+}
+
+/* Containers/Windows */
+.dark-mode .container {
+  background-color: #252525;
+  border: 1px solid #404040;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .regular-order {
+  background-color: #252525;
+}
+
+.dark-mode .buttons {
+  background-color: #252525;
+}
+
+/* Funds Table */
+.dark-mode .table-funds {
+  border: 1px solid #404040;
+  background-color: #252525;
+}
+
+.dark-mode .table-funds .data p:first-child {
+  color: #b0b0b0;
+}
+
+.dark-mode .table-funds hr {
+  background: #404040;
+}
+
+/* Borders and Dividers */
+.dark-mode .divider {
+  background: #404040;
+}
+
+.dark-mode .data hr {
+  border-left: 1px solid #404040;
+}
+
+.dark-mode .section hr {
+  background: #404040;
+}
+
+.dark-mode hr {
+  border-color: #404040;
+}
+
+.dark-mode [style*="color: #666"] {
+  color: #b0b0b0 !important;
+}
+
+.dark-mode [style*="color: #999"] {
+  color: #9e9e9e !important;
+}
+
+/* Watchlist Numbers */
 .dark-mode .watchlist-number {
-  background: #1a1a1a;
+  background: #252525;
   border: 1px solid #404040;
 }
 
@@ -125,218 +336,14 @@ body.dark-mode {
 }
 
 .dark-mode .watchlist-number ul li:hover {
-  background: #3a3a3a;
+  background: #2d2d2d;
 }
 
-/* ✅ Tables */
-.dark-mode .order-table table {
-  background-color: #1a1a1a;
-}
-
-.dark-mode .order-table tr {
-  border-top: 1px solid #404040;
-  border-bottom: 1px solid #404040;
-}
-
-.dark-mode .order-table th {
-  color: #888888;
-  background-color: #2d2d2d;
-}
-
-.dark-mode .order-table td {
-  color: #cccccc;
-  background-color: #1a1a1a;
-}
-
-.dark-mode .order-table tr th:nth-child(1),
-.dark-mode .order-table tr th:nth-child(4) {
-  border-right: 1px solid #404040;
-}
-
-.dark-mode .order-table tr td:nth-child(1),
-.dark-mode .order-table tr td:nth-child(4) {
-  border-right: 1px solid #404040;
-}
-
-/* ✅ KEEP RED AND GREEN COLORS FOR STOCKS */
-.dark-mode .profit,
-.dark-mode .up {
-  color: #4caf50 !important; /* ✅ Green for profits/up */
-}
-
-.dark-mode .loss,
-.dark-mode .down {
-  color: #f44336 !important; /* ✅ Red for loss/down */
-}
-
-.dark-mode .order-table td.profit {
-  color: #4caf50 !important; /* ✅ Green */
-}
-
-.dark-mode .order-table td.loss {
-  color: #f44336 !important; /* ✅ Red */
-}
-
-.dark-mode .data .first .profit {
-  color: #4caf50 !important; /* ✅ Green */
-}
-
-.dark-mode .data .first .loss {
-  color: #f44336 !important; /* ✅ Red */
-}
-
-.dark-mode .row .col:last-child h5.profit {
-  color: #4caf50 !important; /* ✅ Green */
-}
-
-.dark-mode .row .col:last-child h5.loss {
-  color: #f44336 !important; /* ✅ Red */
-}
-
-/* ✅ Keep Watchlist Stock Colors */
-.dark-mode .item-info span:nth-child(2),
-.dark-mode .item-info span:nth-child(3) {
-  color: #f44336; /* Keep red for stocks */
-}
-
-.dark-mode ul li:nth-child(1) {
-  color: #f44336; /* Keep red */
-}
-
-/* ✅ Text Colors */
-.dark-mode .title {
-  color: #cccccc;
-}
-
-.dark-mode .col h5 {
-  color: #cccccc;
-}
-
-.dark-mode .username h6 {
-  color: #cccccc;
-}
-
-.dark-mode .section span p {
-  color: #ffffff;
-}
-
-.dark-mode .data .first h3 {
-  color: #cccccc;
-}
-
-.dark-mode .data .first p {
-  color: #888888;
-}
-
-.dark-mode .data .second p {
-  color: #888888;
-}
-
-.dark-mode .data .second p span {
-  color: #aaaaaa;
-}
-
-.dark-mode .index {
-  color: #aaaaaa;
-}
-
-.dark-mode .percent {
-  color: #888888;
-}
-
-.dark-mode .imp {
-  color: #cccccc;
-}
-
-.dark-mode .imp-colored {
-  color: #42a5f5;
-}
-
-/* ✅ Buttons and Actions */
-.dark-mode .action {
-  background-color: #1a1a1a;
-  border: 0.7px solid #505050;
-  color: #cccccc;
-}
-
-.dark-mode .action:hover {
-  background-color: #3a3a3a;
-}
-
-.dark-mode .buy {
-  background-color: #4184f3; /* Keep blue */
-  color: white;
-}
-
-.dark-mode .sell {
-  background-color: #ff5722; /* Keep orange/red */
-  color: white;
-}
-
-/* ✅ Borders and Dividers */
-.dark-mode .divider {
-  background: #505050;
-}
-
-.dark-mode .data hr {
-  border-left: 0.6px solid #404040;
-}
-
-.dark-mode .section hr {
-  background: #505050;
-}
-
-.dark-mode hr {
-  border-left: 0.8px solid #404040;
-}
-
-/* ✅ Funds Table */
-.dark-mode .table-funds {
-  border: 1px solid #505050;
-  background-color: #1a1a1a;
-}
-
-.dark-mode .table-funds .data p:first-child {
-  color: #888888;
-}
-
-.dark-mode .table-funds hr {
-  background: #505050;
-}
-
-/* ✅ Input Fields */
-.dark-mode input,
-.dark-mode fieldset {
-  background-color: #2d2d2d;
-  color: #ffffff;
-  border: 1px solid #505050;
-}
-
-.dark-mode input:focus {
-  outline: none;
-  border-color: #42a5f5;
-}
-
-/* ✅ Containers/Windows */
-.dark-mode .container {
-  background-color: #1a1a1a;
-  border: 1px solid #505050;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.dark-mode .regular-order {
-  background-color: #1a1a1a;
-}
-
-.dark-mode .buttons {
-  background-color: #1a1a1a;
-}
-
-/* ✅ No Orders Page */
+/*Orders Page */
 .dark-mode .no-orders .icon {
-  color: #888888;
+  color: #9e9e9e;
 }
 
 .dark-mode .no-orders p {
-  color: #888888;
+  color: #b0b0b0;
 }

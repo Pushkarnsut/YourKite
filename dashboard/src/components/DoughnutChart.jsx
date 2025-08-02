@@ -4,11 +4,8 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// Helper function to generate a unique color for each stock
-
 
 export default function DoughnutChart({ holdings }) {
-  // Prepare data for Chart.js using the holdings prop
   const generateDynamicColors = (numColors) => {
   const colors = [];
   for (let i = 0; i < numColors; i++) {

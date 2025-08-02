@@ -174,8 +174,7 @@ export default function Menu({user}) {
               </button>
 
               <button className="logout-btn" onClick={handleLogout}>
-                <i className="fa fa-sign-out dropdown-icon"></i>
-                <span>Logout</span>
+                <i className="fa fa-sign-out"></i> Logout
               </button>
             </div>
           )}
