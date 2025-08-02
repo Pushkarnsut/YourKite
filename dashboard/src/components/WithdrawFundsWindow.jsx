@@ -1,5 +1,4 @@
-import { useState,useEffect } from "react";
-import axios from "axios";
+import { useState,useContext } from "react";
 import API from "../Api";
 import StockDataContext from "../context/StockDataContext";
 

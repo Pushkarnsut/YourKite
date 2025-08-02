@@ -2,7 +2,9 @@ import {BrowserRouter,Route,Routes,Navigate} from "react-router-dom"
 import { useState,useEffect } from "react";
 import Home from "./components/Home"
 import "./App.css"
+import "./DarkTheme.css"
 import { StockDataProvider } from "./context/StockDataContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import axios from "axios";
 import API from "./Api";
 
@@ -55,12 +57,14 @@ export default function App(){
   }
 
     return(
-    <StockDataProvider> 
-      <BrowserRouter>
-        <Routes>
-         <Route path="/*" element={<Home user={user} />}/>
-        </Routes>
-      </BrowserRouter>
-    </StockDataProvider>
+    <ThemeProvider>
+      <StockDataProvider>
+        <BrowserRouter>
+          <Routes>
+           <Route path="/*" element={<Home user={user} />}/>
+          </Routes>
+        </BrowserRouter>
+      </StockDataProvider>
+    </ThemeProvider>
   );
 }

@@ -857,6 +857,34 @@ hr {
 .settings:hover {
   cursor: pointer;
 }
+
+.theme-toggle-option {
+  width: 100%;
+  text-align: left;
+  padding: 8px 15px;
+  background: none;
+  border: none;
+  color: #42a5f5 !important;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+theme-toggle-option:hover {
+  background-color: rgba(66, 165, 245, 0.1);
+}
+
+.dropdown-icon {
+  width: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
 .profileopen-dropdown{
   position: absolute;
   top: 100%;
@@ -867,6 +895,7 @@ hr {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   min-width: 140px;
   margin-top: 5px;
+  z-index: 1000;
 }
 .logout-btn {
   width: 100%;
@@ -874,15 +903,15 @@ hr {
   padding: 8px 15px;
   background: none;
   border: none;
-  color: #ff4d4f;
+  color: #ff4d4f !important;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.2s;
 }
+.logout-btn:hover {
+  background-color: rgba(255, 87, 34, 0.1);
+}
 .action:hover {
   background-color: rgb(212, 212, 212);
 }
-/* body{
-  background-color: black;
-  color: white;
-} */
+
