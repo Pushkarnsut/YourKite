@@ -116,6 +116,7 @@ const BuyActionWindow = ({ uid }) => {
   const canBuy = stockQuantity * stockPrice <= allFunds.available && stockQuantity > 0;
 
   const handleBuyClick = () => {
+    console.log("Buy button clicked");
     API.post("/newOrder", {
       name: uid,
       qty: stockQuantity,
