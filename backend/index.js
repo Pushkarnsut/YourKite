@@ -70,6 +70,17 @@ passport.deserializeUser(UsersModel.deserializeUser());
 //   next();
 // };
 app.use(async (req, res, next) => {
+    const publicRoutes = [
+        '/signup',
+        '/login',
+        '/logout',
+        '/check-auth',
+        '/api/indices',
+        '/api/watchlist'
+    ];
+    if (publicRoutes.includes(req.path)) {
+        return next();
+    }
     if (req.isAuthenticated()) {
         const userId = req.user._id.toString();
         const sessionId = req.session.sessionId;
