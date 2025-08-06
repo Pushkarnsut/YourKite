@@ -107,25 +107,30 @@ import StockDataContext from "../context/StockDataContext";
 
 const BuyActionWindow = ({ uid }) => {
   const generalContext = useContext(GeneralContext);
-  const { livePrices, funds: allFunds } = useContext(StockDataContext);
-  
+  const { livePrices, funds: allFunds, refetchData } = useContext(StockDataContext);
+
   const [stockQuantity, setStockQuantity] = useState(1);
   const currentStock = livePrices.find((s) => s.name === uid);
   const stockPrice = currentStock?.price || 0;
 
   const canBuy = stockQuantity * stockPrice <= allFunds.available && stockQuantity > 0;
 
-  const handleBuyClick = () => {
-    console.log("Buy button clicked");
-    API.post("/newOrder", {
+  const handleBuyClick = async () => {
+    try{
+      console.log("Buy button clicked");
+    await API.post("/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,
       mode: "BUY",
     });
-
+    await refetchData(); 
     generalContext.closeBuyWindow();
-    window.location.reload();
+    }catch (error) {
+      console.error("Failed to place buy order:", error);
+      alert("Could not place order. Please try again.");
+    }
+    
   };
 
   const handleCancelClick = () => {
