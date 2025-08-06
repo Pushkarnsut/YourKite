@@ -74,6 +74,57 @@ body.dark-mode {
   background-color: rgba(255, 112, 67, 0.1);
 }
 
+
+/* === MODAL WINDOWS (BUY/SELL/FUNDS) === */
+.dark-mode #buy-window,
+.dark-mode #sell-window,
+.dark-mode #add-funds-window,
+.dark-mode #withdraw-window {
+  background-color: #2d2d2d;
+  color: #d4d4d4;
+  border: 1px solid #444444;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode #buy-window fieldset,
+.dark-mode #sell-window fieldset,
+.dark-mode #add-funds-window fieldset,
+.dark-mode #withdraw-window fieldset {
+  border: 1px solid #555;
+}
+
+.dark-mode #buy-window legend,
+.dark-mode #sell-window legend,
+.dark-mode #add-funds-window legend,
+.dark-mode #withdraw-window legend {
+  color: #b0b0b0;
+}
+
+.dark-mode #buy-window input,
+.dark-mode #sell-window input,
+.dark-mode #add-funds-window input,
+.dark-mode #withdraw-window input {
+  background-color: #3c3c3c;
+  color: #e8e8e8;
+  border: 1px solid #555;
+  border-radius: 3px;
+}
+
+.dark-mode #buy-window .buttons span,
+.dark-mode #sell-window .buttons span {
+  color: #b0b0b0;
+}
+
+.dark-mode .btn-grey {
+  background-color: #4f4f4f;
+  color: #e0e0e0;
+  border: none;
+}
+
+.dark-mode .btn-grey:hover {
+  background-color: #5a5a5a;
+}
+
 /* === WATCHLIST === */
 .dark-mode .watchlist-container {
   background-color: #252525;

@@ -112,8 +112,8 @@ import StockDataContext from "../context/StockDataContext";
 
 const SellActionWindow = ({ uid }) => {
   const generalContext = useContext(GeneralContext);
-  const { livePrices, holdings: allHoldings } = useContext(StockDataContext);
-  
+  const { livePrices, holdings: allHoldings, refetchData } = useContext(StockDataContext);
+
   const [stockQuantity, setStockQuantity] = useState(1);
   const currentStock = livePrices.find((s) => s.name === uid);
   const stockPrice = currentStock?.price || 0;
@@ -122,16 +122,20 @@ const SellActionWindow = ({ uid }) => {
 
   const canSell = stockQuantity <= hasStockQty && stockQuantity > 0;
 
-  const handleSellClick = () => {
-    API.post("/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "SELL",
-    });
-
-    generalContext.closeSellWindow();
-    window.location.reload();
+  const handleSellClick = async () => {
+    try {
+      await API.post("/newOrder", {
+        name: uid,
+        qty: stockQuantity,
+        price: stockPrice,
+        mode: "SELL",
+      });
+      await refetchData();
+      generalContext.closeSellWindow();
+    } catch (error) {
+      console.error("Failed to place sell order:", error);
+      alert("Could not place order. Please try again.");
+    }
   };
 
   const handleCancelClick = () => {

@@ -30,9 +30,9 @@ export function StockDataProvider({ children }) {
     }
   }, []);
 
-  useEffect(() => {
-    refetchData();
-  }, [refetchData]); 
+  // useEffect(() => {
+  //   refetchData();
+  // }, [refetchData]); 
 
   useEffect(() => {
     API.get("/allHoldings")

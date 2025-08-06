@@ -4,14 +4,19 @@ import API from "../Api";
 import StockDataContext from "../context/StockDataContext";
 
 export default function AddFundsWindow({ close }) {
-  const { funds: allFunds } = useContext(StockDataContext);
+  const { funds: allFunds, refetchData } = useContext(StockDataContext);
   const [newamount, setNewAmount] = useState(100);
-  const handleAddClick = () => {
-      API.post("/addfunds", {
-        amount: newamount
-      });
-      close();
-      window.location.reload();
+  const handleAddClick = async () => {
+      try {
+        await API.post("/addfunds", {
+          amount: newamount
+        });
+        close();
+        await refetchData();
+      } catch (error) {
+        console.error("Failed to add funds:", error);
+        alert("Could not add funds. Please try again.");
+      }
     };
   
   return (

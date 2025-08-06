@@ -118,14 +118,14 @@ const BuyActionWindow = ({ uid }) => {
   const handleBuyClick = async () => {
     try{
       console.log("Buy button clicked");
-    await API.post("/newOrder", {
+      await API.post("/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,
       mode: "BUY",
-    });
-    await refetchData(); 
-    generalContext.closeBuyWindow();
+      });
+      generalContext.closeBuyWindow();
+      await refetchData(); 
     }catch (error) {
       console.error("Failed to place buy order:", error);
       alert("Could not place order. Please try again.");

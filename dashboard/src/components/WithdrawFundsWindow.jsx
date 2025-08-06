@@ -3,16 +3,21 @@ import API from "../Api";
 import StockDataContext from "../context/StockDataContext";
 
 export default function WithdrawFundsWindow({ close }) {
-  const { funds: allFunds } = useContext(StockDataContext);
+  const { funds: allFunds, refetchData } = useContext(StockDataContext);
   const [newamount, setNewAmount] = useState(1);
 
-  const handleWithdrawClick = () => {
-      API.post("/withdrawfunds", {
+  const handleWithdrawClick = async () => {
+    try {
+      await API.post("/withdrawfunds", {
         amount: newamount
       });
       close();
-      window.location.reload();
-    };
+      await refetchData();
+    } catch (error) {
+      console.error("Failed to withdraw funds:", error);
+      alert("Could not withdraw funds. Please try again.");
+    }
+  };
   const canWithdraw = newamount > 0 && newamount <= allFunds.available;
 
 
