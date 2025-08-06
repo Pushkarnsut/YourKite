@@ -656,6 +656,7 @@ app.get("/allPositions", async(req,res)=>{
     res.json(allPositions);
 })
 app.post("/newOrder", async(req,res)=>{
+    console.log("new order arrived");
     const {name,qty,price,mode}=req.body;
     let newOrder=new OrdersModel({
         name:req.body.name,
