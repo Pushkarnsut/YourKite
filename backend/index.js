@@ -92,7 +92,7 @@ app.use(async (req, res, next) => {
         }
         return next();
     }
-    return;
+    return res.status(401).json({ message: "Authentication required. Please log in." });
 });
 
 async function createInitialFundsForUser(userId) {
