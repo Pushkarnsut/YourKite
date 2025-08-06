@@ -92,7 +92,7 @@ app.use(async (req, res, next) => {
         }
         return next();
     }
-    return next();
+    return;
 });
 
 async function createInitialFundsForUser(userId) {
@@ -101,6 +101,7 @@ async function createInitialFundsForUser(userId) {
             available: 2000, 
             used: 0,
             payin: 2000,
+            openingBalance: 2000,
             user: userId
         });
         await initialFunds.save();
@@ -536,7 +537,7 @@ function updatePrices() {
         }
     });
 }
-function simulateEndOfDay() {
+async function simulateEndOfDay() {
     initialStocksData.forEach(stockConfig => {
         const stockName = stockConfig.name;
         const currentStockData = stockCache.get(stockName);
@@ -555,6 +556,7 @@ function simulateEndOfDay() {
             });
         }
     });
+    await FundsModel.updateMany({}, [{ $set: { openingBalance: "$available" } }]);
 }
 
 setInterval(updatePrices, priceUpdateInterval); 

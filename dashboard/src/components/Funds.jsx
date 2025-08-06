@@ -165,7 +165,7 @@ export default function Funds() {
             <hr />
             <div className="data">
               <p>Opening Balance</p>
-              <p>{allFunds.available}</p>
+              <p>{allFunds.openingBalance}</p>
             </div>
             <div className="data">
               <p>Payin</p>
