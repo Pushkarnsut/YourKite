@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect,useCallback } from 'react';
+import React, { createContext, useState, useContext, useEffect} from 'react';
 import API from "../Api"
 const StockDataContext = createContext();
 
@@ -10,7 +10,7 @@ export function StockDataProvider({ children }) {
   const [allPositions, setAllPositions] = useState([]);
   const [indices, setIndices] = useState([]);
 
-  const refetchData = useCallback(async () => {
+  const refetchData = async () => {
     try {
       const fundsRes = await API.get("/Funds");
       setAllFunds(fundsRes.data);
@@ -28,11 +28,7 @@ export function StockDataProvider({ children }) {
     } catch (err) {
       console.error("Error refetching data:", err);
     }
-  }, []);
-
-  // useEffect(() => {
-  //   refetchData();
-  // }, [refetchData]); 
+  };
 
   useEffect(() => {
     API.get("/allHoldings")

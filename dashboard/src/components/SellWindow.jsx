@@ -130,8 +130,8 @@ const SellActionWindow = ({ uid }) => {
         price: stockPrice,
         mode: "SELL",
       });
-      await refetchData();
       generalContext.closeSellWindow();
+      refetchData();
     } catch (error) {
       console.error("Failed to place sell order:", error);
       alert("Could not place order. Please try again.");

@@ -12,7 +12,7 @@ export default function AddFundsWindow({ close }) {
           amount: newamount
         });
         close();
-        await refetchData();
+        refetchData();
       } catch (error) {
         console.error("Failed to add funds:", error);
         alert("Could not add funds. Please try again.");

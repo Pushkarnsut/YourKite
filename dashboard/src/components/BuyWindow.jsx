@@ -125,7 +125,7 @@ const BuyActionWindow = ({ uid }) => {
       mode: "BUY",
       });
       generalContext.closeBuyWindow();
-      await refetchData(); 
+      refetchData(); 
     }catch (error) {
       console.error("Failed to place buy order:", error);
       alert("Could not place order. Please try again.");

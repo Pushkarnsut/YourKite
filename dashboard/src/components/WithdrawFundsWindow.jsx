@@ -12,7 +12,7 @@ export default function WithdrawFundsWindow({ close }) {
         amount: newamount
       });
       close();
-      await refetchData();
+      refetchData();
     } catch (error) {
       console.error("Failed to withdraw funds:", error);
       alert("Could not withdraw funds. Please try again.");
